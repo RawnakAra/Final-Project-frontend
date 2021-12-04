@@ -1,8 +1,10 @@
 import React from 'react'
 import axios from 'axios'
-import HomePage from './homepage'
+import { useNavigate } from 'react-router-dom'
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 const Register = () => {
+    const navigate =useNavigate()
     const [item, setItem] = React.useState({
         name: "",
         email: '',
@@ -46,10 +48,13 @@ const Register = () => {
         if (emailFilter.length === 0 && item.password === item.confirmPassword) {
             axios.post('https://sweets-in-progress.herokuapp.com/api/user/user/register',item)
             .then(res=>{
-                console.log('post',res.data)
+                console.log('post',res.data.token)
                 if(res.status === 200){
+                    localStorage.setItem("toker",res.data.token)
                     setData([...data , res.data])
-                    
+                    setTimeout(()=>{
+                        navigate('/homepage')
+                    },1000)  
                 }
             }).catch(err=>{
                 console.log('data catch')
@@ -62,33 +67,80 @@ const Register = () => {
     }
     return (
         <>
-        
-        <div>
-            <h1>Register</h1>
-            <form>
-                <div>
-                    <label for="name">Name</label>
-                    <input type='text' name={'name'} value={item.name} required onChange={textHandler} />
-                </div>
-                <div>
-                    <label for="email">Email address</label>
-                    <input type='email' name={'email'} value={item.email} required onChange={textHandler} />
-                </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input type='password' name={'password'} value={item.password} required onChange={textHandler} />
-                </div>
-                <div>
-                    <label for="password">Confirm Password</label>
-                    <input type='password' name={'confirmPassword'} value={item.confirmPassword} required onChange={textHandler} />
-                </div>
-                <input type="button" value='Register' onClick={getRegister} /><br />
-                <span>Already have an account?<a href='/login'>Login here</a></span>
-            </form>
-            </div>
-           
+            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+                <Grid.Column style={{ maxWidth: 450 }}>
+                    <Header as='h2' style={{'color':'#74250e'}} textAlign='center'>
+                        Log-in to your account
+                    </Header>
+                    <Form size='large'>
+                        <Segment stacked>
+                            <Form.Input
+                            required
+                                fluid
+                                icon='user'
+                                iconPosition='left'
+                                name={'name'}
+                                value={item.name}
+                                placeholder='First_Name'
+                                onChange={textHandler}
+                            />
+                            <Form.Input
+                            required
+                                fluid
+                                icon='user'
+                                iconPosition='left'
+                                name={'email'}
+                                value={item.email}
+                                placeholder='E-mail address'
+                                onChange={textHandler}
+                            />
+                            <Form.Input
+                            required
+                                fluid
+                                icon='lock'
+                                name={'password'}
+                                value={item.password}
+                                iconPosition='left'
+                                placeholder='Password'
+                                type='password'
+                                onChange={textHandler}
+                            />
+                            <Form.Input
+                            required
+                                fluid
+                                icon='lock'
+                                iconPosition='left'
+                                name={'confirmPassword'}
+                                value={item.confirmPassword}
+                                placeholder='Confirm Password'
+                                onChange={textHandler}
+                            />
+
+                            <Button
+                             style={{'backgroundColor':'#74250e' ,"color" : "white"}} 
+                             fluid 
+                             size='large'
+                              onClick={getRegister}
+                              >
+                                Login
+                            </Button>
+                        </Segment>
+                    </Form>
+                    <Message>
+                    Already have an account? <a href='/login'>Register</a>
+                    </Message>
+                </Grid.Column>
+            </Grid>
+
         </>
     )
 }
 
 export default Register
+
+// ,{
+//     headers :
+//     {
+//         "Authorization" : localStorage.getItem('token') 
+//     }
+// }
