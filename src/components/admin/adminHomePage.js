@@ -1,28 +1,19 @@
 import React from 'react'
-
-const AdminHomePage = () => {
+import NavBar from './nav'
+import CardP from './card'
+const AdminHomePage = ({data}) => {
 
     return (
         <>
-            <div class="ui secondary pointing menu" >
-                <a class="item" >
-                    Home
-                </a>
-                <a class="item">
-                   Add Store
-                </a>
-                <a class="item" href='/delete'>
-                    UnFriended
-                </a>
-                <div class="right menu">
-                    <a class="ui item active" href='/logout'>
-                        Logout
-                    </a>
-                </div>
-            </div>
-            <div class="ui segment">
-                <p></p>
-            </div>
+            <NavBar />
+            {
+              data? data.map(r=>{
+                    if(!r.admin){
+                   return <CardP data={r} />
+                    }
+                }):<></>
+            }
+
         </>
     )
 }

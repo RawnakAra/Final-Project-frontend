@@ -13,7 +13,6 @@ import {
 } from "react-router-dom";
 import Admin from './components/admin/admin';
 import AdminHomePage from './components/admin/adminHomePage';
-import DeleteUser from './components/admin/delete';
 
 
 function App() {
@@ -45,7 +44,6 @@ function App() {
             <Route  path='/homepage'  element={<HomePage data={data}/>} />
             <Route  path='/admin'  element={<Admin data={data}/>} />
             <Route  path='/adminHomePage'  element={<AdminHomePage data={data}/>} />
-            <Route  path='/delete'  element={<DeleteUser data={data}/>} />
 
       </Routes>
       </div>
