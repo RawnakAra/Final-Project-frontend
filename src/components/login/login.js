@@ -5,29 +5,12 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import './login.style.css'
 
-const Loginbage = () => {
+const Loginbage = ({data}) => {
     const navigate = useNavigate()
     const [item, setItem] = React.useState({
         email: '',
         password: ''
     })
-    const [data, setData] = React.useState('')
-
-    React.useEffect(() => {
-        getAllData()
-    }, [])
-
-    const getAllData = () => {
-        axios.get('https://sweets-in-progress.herokuapp.com/api/user/')
-            .then(res => {
-                console.log(res.data)
-                if (res.status === 200) {
-                    setData(res.data)
-                }
-            }).catch(err => {
-                console.log('Error on getting data')
-            })
-    }
     const textHandler = (e) => {
         setItem({
             ...item,
@@ -38,7 +21,7 @@ const Loginbage = () => {
         const emaildFilter = data.filter(ele => {
             console.log(ele.email)
             console.log(item.email)
-            return item.email === ele.email
+            return item.email === ele.email && !ele.admin
         })
         if (emaildFilter.length === 1) {
             axios.post('https://sweets-in-progress.herokuapp.com/api/user/user/login', item)
@@ -59,16 +42,16 @@ const Loginbage = () => {
         }
     }
     return (
-        <>
+        <div className="homepage-bgimage">
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
                 <Grid.Column style={{ maxWidth: 450 }}>
-                    <Header as='h2' style={{'color':'#74250e'}} textAlign='center'>
+                    <Header as='h2' style={{ 'color': '#74250e' }} textAlign='center'>
                         Log-in to your account
                     </Header>
                     <Form size='large'>
                         <Segment stacked>
                             <Form.Input
-                            required
+                                required
                                 fluid
                                 icon='user'
                                 iconPosition='left'
@@ -78,7 +61,7 @@ const Loginbage = () => {
                                 onChange={textHandler}
                             />
                             <Form.Input
-                            required
+                                required
                                 fluid
                                 icon='lock'
                                 name={'password'}
@@ -90,11 +73,11 @@ const Loginbage = () => {
                             />
 
                             <Button
-                             style={{'backgroundColor':'#74250e' ,"color" : "white"}} 
-                             fluid 
-                             size='large'
-                              onClick={getLogin}
-                              >
+                                style={{ 'backgroundColor': '#74250e', "color": "white" }}
+                                fluid
+                                size='large'
+                                onClick={getLogin}
+                            >
                                 Login
                             </Button>
                         </Segment>
@@ -102,10 +85,13 @@ const Loginbage = () => {
                     <Message>
                         New to us? <a href='/register'>Register</a>
                     </Message>
+                    <div   style={{ 'backgroundColor': '#74250e', "color": "white" }} >
+            {/* ,maxWidth : 70 , marginTop : 10 ,marginLeft : 10 , textAlign : 'center'  */}
+                <a href='/admin'>Admin</a>
+            </div>
                 </Grid.Column>
             </Grid>
-
-        </>
+            </div>
     )
 }
 

@@ -54,7 +54,8 @@ const Register = () => {
                     setData([...data , res.data])
                     setTimeout(()=>{
                         navigate('/homepage')
-                    },1000)  
+                    },1000) 
+                    setItem('') 
                 }
             }).catch(err=>{
                 console.log('data catch')
@@ -67,7 +68,7 @@ const Register = () => {
     }
     return (
         <>
-            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+            <Grid textAlign='center' style={{ height: '100vh'}} verticalAlign='middle'>
                 <Grid.Column style={{ maxWidth: 450 }}>
                     <Header as='h2' style={{'color':'#74250e'}} textAlign='center'>
                         Log-in to your account
@@ -127,7 +128,7 @@ const Register = () => {
                         </Segment>
                     </Form>
                     <Message>
-                    Already have an account? <a href='/login'>Register</a>
+                    Already have an account? <a href='/'>LogIn</a>
                     </Message>
                 </Grid.Column>
             </Grid>

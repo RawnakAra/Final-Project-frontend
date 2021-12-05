@@ -1,0 +1,12 @@
+/* body{
+   background-color: url('../img/background.jpg');
+} */
+.homepage-bgimage {
+   /* background: url("../img/background.jpg"); */
+   height: 100vh;
+   width: 100vw;
+   opacity: 0.8;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size:contain;
+} 
