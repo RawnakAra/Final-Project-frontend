@@ -6,7 +6,7 @@ const Searching = () => {
         recipeNameToSearch : ''
     })
     const [ingredientsArray , setIngredientsArray] = React.useState([])
-    
+    const [toPost , setToPost] = React.useState([])
     const textHandler = (e) => {
         console.log(e.target.value)
         setSearch({
@@ -14,23 +14,30 @@ const Searching = () => {
            [e.target.name]:e.target.value
         })
     }
-    const searcTextHandler = (e) => {
-        console.log(e.target.value)
-        setIngredientsArray([...ingredientsArray ,e.target.value])
-    }
-    const searchRrecipe =(e) => {
-        console.log(e.keyCode)
-        console.log(Search.recipeNameToSearch.toLowerCase())
+   // const searcTextHandler = (e) => {
+    //     console.log(e.target.value)
+    //     setIngredientsArray([...ingredientsArray ,e.target.value])
+    // }
+    const searchRrecipe =async(e) => {
+        const toSearch = (Search.recipeNameToSearch.trim().toLowerCase())
+        console.log(toSearch)
       if(e.keyCode === 13){
           console.log('keycode')
-         axios.get("https://sweets-in-progress.herokuapp.com/api/recipes/searchbyname",Search)
+        await axios.get("https://sweets-in-progress.herokuapp.com/api/recipes")
          .then(res =>{
+             //console.log(res)
              console.log(res.data)
-             console.log(res.status)
             if(res.status === 200){
-                res.data.map(post=>{
-                   <Postes post={post}/>
+              const result = res.data.filter(element=>{
+                const toSearch = (Search.recipeNameToSearch.trim().toLowerCase())
+                console.log(element.recipeName)
+                  if(element.recipeName.toLowerCase().toString().search(toSearch) !== -1){
+                    toPost.push(element)
+                    setToPost(toPost)
+                }
                })
+              console.log(toPost)
+              return result
              }  
          }).catch(err=>{
              console.log(err)
@@ -39,7 +46,7 @@ const Searching = () => {
     }
     return (
         <>
-
+         
             <h1>Resipe in Progress</h1>
             <from>
                 <div class="ui search">
@@ -52,12 +59,19 @@ const Searching = () => {
 
                 <div class="ui search">
                     <div class="ui icon input">
-                        <input class="prompt" type="text" value={ingredientsArray} placeholder="Search for resipe" onChange={searcTextHandler}/>
+                        <input class="prompt" type="text" value={ingredientsArray} placeholder="Search for resipe" />
                         <i class ="search icon"></i>
                     </div>
                     <div class="results"></div>
                 </div>
             </from>
+            {/* {
+                toPost ? 
+                    toPost.map(val=>{
+                        <Postes/>
+                    })
+                 :<></>
+            } */}
         </>
     )
 }

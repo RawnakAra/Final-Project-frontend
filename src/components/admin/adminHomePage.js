@@ -12,7 +12,7 @@ const AdminHomePage = ({ data, updatedata }) => {
                     if (!user.admin) {
                         return <CardP data={data} user={user} updatedata={updatedata} />
                     }
-                }) : <></>
+                }) : <>{""}</>
             }
 
         </>
