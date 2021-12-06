@@ -12,16 +12,19 @@ const Searching = () => {
         console.log(e.target.value)
         setSearch([...ingredientsArray ,e.target.value])
     }
-    const searchRrecipe =async (e) => {
-      if(e.keyCode === 13 && search !== ''){
-         await axios.get("https://sweets-in-progress.herokuapp.com/api/recipes/searchbyname",search)
+    const searchRrecipe =(e) => {
+        console.log(e.keyCode)
+        console.log(search)
+      if(e.keyCode === 13){
+          console.log('keycode')
+         axios.get("https://sweets-in-progress.herokuapp.com/api/recipes")
          .then(res =>{
             // if(res.status === 200){
                 console.log(res)
             /// }
              
          }).catch(err=>{
-             console.log('Error')
+             console.log(err)
          })
       }
     }

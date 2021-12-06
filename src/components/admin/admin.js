@@ -24,7 +24,11 @@ const Admin = ({data})=>{
         })
         console.log(emaildandAdminFilter)
         if (emaildandAdminFilter.length === 1) {
-            axios.post('https://sweets-in-progress.herokuapp.com/api/user/user/login', item)
+            axios.post('https://sweets-in-progress.herokuapp.com/api/user/user/login', item,{
+                headers: {
+                    "Authorization":  localStorage.setItem("token", res.data.token)
+                  } 
+            })
                 .then(res => {
                     console.log(res)
                     localStorage.setItem("token", res.data.token)

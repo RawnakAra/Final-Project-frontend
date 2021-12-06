@@ -1,17 +1,18 @@
 import React from 'react'
 import axios from 'axios'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon} from 'semantic-ui-react'
 
 const CardP = ({ data, user, updatedata }) => {
 
   const deleteHandler = async (id) => {
-
-    await axios.delete(`https://sweets-in-progress.herokuapp.com/api/user/delete/${id}`, {
+    console.log(id)
+    axios.delete(`https://sweets-in-progress.herokuapp.com/api/user/delete/${id}`,{
       headers: {
-        "Authorization": localStorage.getItem("token")
-      }
-    })
+          "Authorization": localStorage.getItem("token")
+        } 
+  })
       .then(res => {
+        console.log(res)
         if (res.status === 200) {
           updatedata(id)
         }
