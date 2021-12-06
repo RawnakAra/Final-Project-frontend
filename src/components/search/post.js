@@ -3,7 +3,13 @@ import React from "react";
 const Post =()=>{
 return (
     <>
-     <div class="ui items">
+ ffffffff
+    </>
+)
+}
+export default Post
+
+   {/* <div class="ui items">
   <div class="item">
     <div class="content">
       <a class="header">Cute Dog</a>
@@ -17,8 +23,4 @@ return (
       </div>
     </div>
   </div>
-</div>
-    </>
-)
-}
-export default Post
+</div> */}
