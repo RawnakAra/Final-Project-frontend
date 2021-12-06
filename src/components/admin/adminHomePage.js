@@ -1,17 +1,18 @@
 import React from 'react'
 import NavBar from './nav'
 import CardP from './card'
-const AdminHomePage = ({data}) => {
+const AdminHomePage = ({ data, updatedata }) => {
 
     return (
+
         <>
             <NavBar />
             {
-              data? data.map(r=>{
-                    if(!r.admin){
-                   return <CardP data={r} />
+                data ? data.map(user => {
+                    if (!user.admin) {
+                        return <CardP data={data} user={user} updatedata={updatedata} />
                     }
-                }):<></>
+                }) : <></>
             }
 
         </>

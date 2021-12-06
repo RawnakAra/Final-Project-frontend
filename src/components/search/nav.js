@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState } from 'react'
 import { Menu} from 'semantic-ui-react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -9,16 +9,15 @@ const NavBar = () => {
 
 const logout=async (e)=>{
 const userLogOut = (e.target.getAttribute('value'))
-await axios.post(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,userLogOut, {
+await axios.post(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,userLogOut,{
   headers: {
-    "Authorization": localStorage.clear()
+    "Authorization": localStorage.getItem("token")
   }
 })
   .then(res => {
     if (res.status === 200) {
-      window.localStorage.clear()
+        window.localStorage.clear()
       navigate('/')
-
     }
   }).catch(err => {
     console.log('something went wrong')
@@ -32,17 +31,7 @@ await axios.post(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`
         <Menu.Item
           name='home'
           active={activeItem === 'home'}
-          onClick={() => navigate('/adminHomePage')}
-        />
-        <Menu.Item
-          name='Add Store'
-          active={activeItem === 'Add Store'}
-          onClick={() => navigate('/')}
-        />
-        <Menu.Item
-          name='Add Recipe'
-          active={activeItem === 'Add Recipe'}
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/homepage')}
         />
         <Menu.Menu position='right'>
           <Menu.Item

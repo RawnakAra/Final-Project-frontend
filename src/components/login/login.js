@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header,Message, Segment } from 'semantic-ui-react'
 import "semantic-ui-css/semantic.min.css"
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
@@ -27,7 +27,7 @@ const Loginbage = ({data}) => {
             axios.post('https://sweets-in-progress.herokuapp.com/api/user/user/login', item)
                 .then(res => {
                     console.log(res)
-                    localStorage.setItem("toker", res.data.token)
+                    localStorage.setItem("token", res.data.token)
                     setItem('')
                     setTimeout(() => {
                         navigate('/homepage')

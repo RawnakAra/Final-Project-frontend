@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 
 const Register = () => {
     const navigate =useNavigate()
@@ -50,7 +50,7 @@ const Register = () => {
             .then(res=>{
                 console.log('post',res.data.token)
                 if(res.status === 200){
-                    localStorage.setItem("toker",res.data.token)
+                    localStorage.setItem("token",res.data.token)
                     setData([...data , res.data])
                     setTimeout(()=>{
                         navigate('/homepage')

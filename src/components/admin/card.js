@@ -2,41 +2,44 @@ import React from 'react'
 import axios from 'axios'
 import { Card, Icon, Image } from 'semantic-ui-react'
 
-const CardP = ({data}) => {
+const CardP = ({ data, user, updatedata }) => {
 
-const deleteHandler = (e)=>{
-    const id= e.targer.value
-   axios.delete(`https://sweets-in-progress.herokuapp.com/api/user/delete/${id}`)
-   .then(res=>{
-       if(res.status === 200){
-           alert('delete')
-       } 
-   }).catch(err =>{
-      console.log('something went wrong')
-   })
-}
+  const deleteHandler = async (id) => {
 
-    return( 
-  <Card>
-      {
-          console.log(data)
+    await axios.delete(`https://sweets-in-progress.herokuapp.com/api/user/delete/${id}`, {
+      headers: {
+        "Authorization": localStorage.getItem("token")
       }
-   {/* <Image src=`${img}` wrapped ui={false} /> */}
-    <Card.Content>
-      <Card.Header>{data.name}</Card.Header>
-      <Card.Meta>
-        <span className='date'>{data.email}</span>
-      </Card.Meta>
-    </Card.Content>
-    <Card.Content extra>
-      <button value={data._id} onClick={deleteHandler}>
-        <Icon name='user delete' />
-        Delete
-      </button>
-    </Card.Content>
-  </Card>
+    })
+      .then(res => {
+        if (res.status === 200) {
+          updatedata(id)
+        }
+      }).catch(err => {
+        console.log('something went wrong')
+      })
+  }
+
+  return (
+    <Card>
+      {
+        console.log(user)
+      }
+      <Card.Content>
+        <Card.Header>{user.name}</Card.Header>
+        <Card.Meta>
+          <span className='date'>{user.email}</span>
+        </Card.Meta>
+      </Card.Content>
+      <Card.Content extra>
+        <button value={user._id} onClick={() => deleteHandler(user._id)}>
+          <Icon name='user delete' />
+          Delete
+        </button>
+      </Card.Content>
+    </Card>
   )
- }
+}
 
 export default CardP
 

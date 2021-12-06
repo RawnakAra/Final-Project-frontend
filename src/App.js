@@ -14,40 +14,49 @@ import {
 import Admin from './components/admin/admin';
 import AdminHomePage from './components/admin/adminHomePage';
 
-
 function App() {
   const [data, setData] = React.useState('')
 
   React.useEffect(() => {
-      getAllData()
+    getAllData()
   }, [])
 
   const getAllData = () => {
-      axios.get('https://sweets-in-progress.herokuapp.com/api/user/')
-          .then(res => {
-              console.log(res.data)
-              if (res.status === 200) {
-                  setData(res.data)
-              }
-          }).catch(err => {
-              console.log('Error on getting data')
-          })
+    axios.get('https://sweets-in-progress.herokuapp.com/api/user/')
+      .then(res => {
+        console.log(res.data)
+        if (res.status === 200) {
+          setData(res.data)
+        }
+      }).catch(err => {
+        console.log('Error on getting data')
+      })
   }
+
+  const updatedata = (val) => {
+    console.log(val)
+    const dataList = [...data]
+    let userNotDeleted = dataList.filter(d => {
+      console.log(d)
+      return d._id !== val
+    })
+    setData(userNotDeleted)
+  }
+
   return (
     <div className="App">
-     <Router>
-     <div>
-     {/* <Nav/> */}
-     <Routes>]
-            <Route  path='/' element={<Loginbage data={data}/>} />
-            <Route  path='/register'  element={<Register/>} />
-            <Route  path='/homepage'  element={<HomePage data={data}/>} />
-            <Route  path='/admin'  element={<Admin data={data}/>} />
-            <Route  path='/adminHomePage'  element={<AdminHomePage data={data}/>} />
-
-      </Routes>
-      </div>
-     </Router>
+      <Router>
+        <div>
+          {/* <Nav/> */}
+          <Routes>]
+            <Route path='/' element={<Loginbage data={data} />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/homepage' element={<HomePage data={data} />} />
+            <Route path='/admin' element={<Admin data={data} />} />
+            <Route path='/adminHomePage' element={<AdminHomePage data={data} updatedata={updatedata} />} />
+          </Routes>
+        </div>
+      </Router>
 
     </div>
   );
