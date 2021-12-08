@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react'
 import "semantic-ui-css/semantic.min.css"
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
@@ -18,19 +18,15 @@ const Admin = ({data})=>{
     }
     const getLogin = async (e) => {
         const emaildandAdminFilter = data.filter(ele => {
-            console.log(ele.email)
-            console.log(item.email)
+           // console.log(ele.email)
+           // console.log(item.email)
             return item.email === ele.email &&  ele.admin
         })
-        console.log(emaildandAdminFilter)
+       // console.log(emaildandAdminFilter)
         if (emaildandAdminFilter.length === 1) {
-            axios.post('https://sweets-in-progress.herokuapp.com/api/user/user/login', item,{
-                headers: {
-                    "Authorization":  localStorage.setItem("token")
-                  } 
-            })
+            axios.post('https://sweets-in-progress.herokuapp.com/api/user/user/login',item)
                 .then(res => {
-                    console.log(res)
+                    //console.log(res)
                     localStorage.setItem("token",res.data.token)
                     setItem('')
                     setTimeout(() => {
@@ -38,10 +34,10 @@ const Admin = ({data})=>{
                     }, 1000)
                 }).catch(err => {
                     alert('Are you sure you are an admin!')
-                    console.log(err)
+                   // console.log(err)
                 })
         } else {
-            console.log('email is wrong')
+          //  console.log('email is wrong')
             alert('email or pasword not correct')
         }
     }
@@ -54,7 +50,7 @@ return(
                         Log-in to your account
                     </Header>
                     <Form size='large'>
-                        <Segment stacked>
+                        <Segment stacked style={{backgroundColor:'transparent'}}>
                             <Form.Input
                                 required
                                 fluid

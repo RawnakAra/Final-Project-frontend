@@ -1,12 +1,5 @@
-/* body{
-   background-color: url('../img/background.jpg');
-} */
-.homepage-bgimage {
-   /* background: url("../img/background.jpg"); */
-   height: 100vh;
+.homepage-bgimage{
+   height: 100vh;margin-bottom: 0;
    width: 100vw;
-   opacity: 0.8;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size:contain;
-} 
+    background: url("../img/1_\(3\).jpg")no-repeat center center/cover ; 
+}

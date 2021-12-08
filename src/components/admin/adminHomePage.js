@@ -4,7 +4,6 @@ import CardP from './card'
 const AdminHomePage = ({ data, updatedata }) => {
 
     return (
-
         <>
             <NavBar />
             {
@@ -12,7 +11,7 @@ const AdminHomePage = ({ data, updatedata }) => {
                     if (!user.admin) {
                         return <CardP data={data} user={user} updatedata={updatedata} />
                     }
-                }) : <>{""}</>
+                }) : <></>
             }
 
         </>

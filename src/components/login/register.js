@@ -67,14 +67,14 @@ const Register = () => {
         }
     }
     return (
-        <>
-            <Grid textAlign='center' style={{ height: '100vh'}} verticalAlign='middle'>
+        <div className="homepage-bgimage">
+            <Grid textAlign='center' style={{ height: '100vh'}} verticalAlign='middle' >
                 <Grid.Column style={{ maxWidth: 450 }}>
-                    <Header as='h2' style={{'color':'#74250e'}} textAlign='center'>
-                        Log-in to your account
+                    <Header as='h2' style={{'color':'#601813'}} textAlign='center'>
+                        WelcOme
                     </Header>
                     <Form size='large'>
-                        <Segment stacked>
+                        <Segment stacked style={{backgroundColor:'transparent'}}>
                             <Form.Input
                             required
                                 fluid
@@ -118,7 +118,7 @@ const Register = () => {
                             />
 
                             <Button
-                             style={{'backgroundColor':'#74250e' ,"color" : "white"}} 
+                             style={{'backgroundColor':'#601813' ,"color" : "white"}} 
                              fluid 
                              size='large'
                               onClick={getRegister}
@@ -127,13 +127,13 @@ const Register = () => {
                             </Button>
                         </Segment>
                     </Form>
-                    <Message>
-                    Already have an account? <a href='/'>LogIn</a>
+                    <Message style={{backgroundColor:'transparent'}}>
+                    Already have an account? <a style={{'color':'black'}} href='/'>LogIn</a>
                     </Message>
                 </Grid.Column>
             </Grid>
 
-        </>
+        </div>
     )
 }
 

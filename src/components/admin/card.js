@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Card, Icon} from 'semantic-ui-react'
+import './card.style.css'
 
 const CardP = ({ data, user, updatedata }) => {
 

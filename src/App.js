@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import Admin from './components/admin/admin';
 import AdminHomePage from './components/admin/adminHomePage';
+import Page from './components/search/page';
 
 function App() {
   const [data, setData] = React.useState('')
@@ -24,7 +25,7 @@ function App() {
   const getAllData = () => {
     axios.get('https://sweets-in-progress.herokuapp.com/api/user/')
       .then(res => {
-        console.log(res.data)
+       // console.log(res.data)
         if (res.status === 200) {
           setData(res.data)
         }
@@ -34,7 +35,7 @@ function App() {
   }
 
   const updatedata = (val) => {
-    console.log(val)
+   // console.log(val)
     const dataList = [...data]
     let userNotDeleted = dataList.filter(d => {
       console.log(d)
@@ -54,6 +55,7 @@ function App() {
             <Route path='/homepage' element={<HomePage data={data} />} />
             <Route path='/admin' element={<Admin data={data} />} />
             <Route path='/adminHomePage' element={<AdminHomePage data={data} updatedata={updatedata} />} />
+            <Route path='/Page/:id' element={<Page/>} />
           </Routes>
         </div>
       </Router>

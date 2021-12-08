@@ -9,7 +9,7 @@ const NavBar = () => {
 
 const logout=async (e)=>{
 const userLogOut = (e.target.getAttribute('value'))
-await axios.post(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,userLogOut,{
+await axios.get(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,{
   headers: {
     "Authorization": localStorage.getItem("token")
   }

@@ -1,26 +1,32 @@
-import React from "react";
-
-const Post =()=>{
-return (
+import {React} from "react";
+import { Card, Icon, Image, Button, Rating } from 'semantic-ui-react'
+import {
+  Link
+ } from "react-router-dom";
+const Post = ({ data }) => {
+  return (
     <>
- ffffffff
+      {
+        <Card>
+          <Image src={data.img} wrapped ui={false} />
+          <Card.Content>
+            <Card.Header>{data.recipeName}</Card.Header>
+            <Rating icon='star' defaultRating={3} maxRating={4} />
+          </Card.Content>
+          <Card.Content extra>
+            {console.log(data.recipeName)}
+          <Link to={`/Page/${data._id}`}><Icon name='linkify' /></Link>
+            <Button
+              content='Like'
+              icon='heart'
+              label={{ as: 'a', basic: true, pointing: 'right', content: '2,048' }}
+              labelPosition='left'
+            />
+          </Card.Content>
+        </Card>
+      }
     </>
-)
+  )
 }
 export default Post
-
-   {/* <div class="ui items">
-  <div class="item">
-    <div class="content">
-      <a class="header">Cute Dog</a>
-      <div class="description">
-        <p></p>
-        <p></p>
-      </div>
-      <div class="extra">
-        <i class="green check icon"></i>
-        121 Votes
-      </div>
-    </div>
-  </div>
-</div> */}
+// {data.url}
