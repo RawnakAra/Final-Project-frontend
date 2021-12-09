@@ -1,9 +1,30 @@
-import {React} from "react";
+import React from "react";
 import { Card, Icon, Image, Button, Rating } from 'semantic-ui-react'
 import {
   Link
  } from "react-router-dom";
+import axios from "axios";
+
 const Post = ({ data }) => {
+
+const [like , setLike] = React.useState(data.like)
+
+const addLike = (value ,content)=>{
+  let a =parseInt(content.label.content)
+ console.log(data._id)
+ setLike(a +=1)
+ updateLikes()
+}
+
+const updateLikes = ()=>{
+ axios.put(`https://sweets-in-progress.herokuapp.com/api/recipes/update/${data._id}`,{like : like.toString()})
+ .then(res =>{
+   console.log(res)
+ }).catch(e =>{
+   console.log(e)
+ })
+}
+
   return (
     <>
       {
@@ -14,13 +35,14 @@ const Post = ({ data }) => {
             <Rating icon='star' defaultRating={3} maxRating={4} />
           </Card.Content>
           <Card.Content extra>
-            {console.log(data.recipeName)}
           <Link to={`/Page/${data._id}`}><Icon name='linkify' /></Link>
             <Button
               content='Like'
               icon='heart'
-              label={{ as: 'a', basic: true, pointing: 'right', content: '2,048' }}
+              label={{ as: 'a', basic: true, pointing: 'right', content: like }}
               labelPosition='left'
+              value = {like}
+              onClick={(value ,content) =>addLike(value,content)}
             />
           </Card.Content>
         </Card>

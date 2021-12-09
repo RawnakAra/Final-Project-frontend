@@ -42,7 +42,7 @@ await axios.get(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,
         <Menu.Item
           name='Add Recipe'
           active={activeItem === 'Add Recipe'}
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/addNew')}
         />
         <Menu.Menu position='right'>
           <Menu.Item

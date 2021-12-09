@@ -36,7 +36,7 @@ const Selector = () => {
   const handelClick = () => {
     axios.post('https://sweets-in-progress.herokuapp.com/api/recipes/searchbyingredients',toSend)
       .then(res => {
-     //   console.log(res)
+        console.log(res)
         if (res.status === 200) {
           sitResipeData(res.data)
           setToSend('')
@@ -66,8 +66,8 @@ const Selector = () => {
         </Button.Content>
       </Button>
       {
-        resipeData ? resipeData.map(resipe => {
-         return <Postes data={resipe}/>
+        resipeData ? resipeData.map((resipe ,index)  => {
+         return <Postes key={index} data={resipe}/>
         }):<></>
       }
     </>

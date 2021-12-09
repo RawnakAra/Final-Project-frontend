@@ -14,6 +14,7 @@ import {
 import Admin from './components/admin/admin';
 import AdminHomePage from './components/admin/adminHomePage';
 import Page from './components/search/page';
+import AddRecipe from './components/addRecipe/toAdd';
 
 function App() {
   const [data, setData] = React.useState('')
@@ -56,6 +57,7 @@ function App() {
             <Route path='/admin' element={<Admin data={data} />} />
             <Route path='/adminHomePage' element={<AdminHomePage data={data} updatedata={updatedata} />} />
             <Route path='/Page/:id' element={<Page/>} />
+            <Route path='/addNew' element={<AddRecipe/>} />
           </Routes>
         </div>
       </Router>
