@@ -1,10 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, FormField, Grid, Header, Message, Segment } from 'semantic-ui-react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const [item, setItem] = React.useState({
         name: "",
         email: '',
@@ -46,37 +48,56 @@ const Register = () => {
         console.log(emailFilter);
         console.log(item.password);
         if (emailFilter.length === 0 && item.password === item.confirmPassword) {
-            axios.post('https://sweets-in-progress.herokuapp.com/api/user/user/register',item)
-            .then(res=>{
-                console.log('post',res.data.token)
-                if(res.status === 200){
-                    localStorage.setItem("token",res.data.token)
-                    setData([...data , res.data])
-                    setTimeout(()=>{
-                        navigate('/homepage')
-                    },1000) 
-                    setItem('') 
-                }
-            }).catch(err=>{
-                console.log('data catch')
-            })
+            axios.post('https://sweets-in-progress.herokuapp.com/api/user/user/register', item)
+                .then(res => {
+                    console.log('post', res.data.token)
+                    if (res.status === 200) {
+                        sessionStorage.setItem("token", res.data.token)
+                        setData([...data, res.data])
+                        setTimeout(() => {
+                            navigate('/homepage')
+                        }, 1000)
+                        setItem('')
+                    }
+                }).catch(err => {
+                    toast('email or pasword not correct', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        type: 'warning'
+                    })
+                })
 
         } else {
-            console.log('the email exist or the password and confirm not the same')
-            alert('the email or password not correct')
+            toast('email or pasword not correct', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                type: 'warning'
+            })
         }
     }
     return (
         <div className="homepage-bgimage">
-            <Grid textAlign='center' style={{ height: '100vh'}} verticalAlign='middle' >
+            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle' >
                 <Grid.Column style={{ maxWidth: 450 }}>
-                    <Header as='h2' style={{'color':'#601813'}} textAlign='center'>
+                    <Header as='h2' style={{ 'color': '#601813' }} textAlign='center'>
                         WelcOme
                     </Header>
                     <Form size='large'>
-                        <Segment stacked style={{backgroundColor:'transparent'}}>
+                        <Segment stacked style={{ backgroundColor: 'transparent' }}>
                             <Form.Input
-                            required
+                                required
                                 fluid
                                 icon='user'
                                 iconPosition='left'
@@ -86,7 +107,7 @@ const Register = () => {
                                 onChange={textHandler}
                             />
                             <Form.Input
-                            required
+                                required
                                 fluid
                                 icon='user'
                                 iconPosition='left'
@@ -96,7 +117,7 @@ const Register = () => {
                                 onChange={textHandler}
                             />
                             <Form.Input
-                            required
+                                required
                                 fluid
                                 icon='lock'
                                 name={'password'}
@@ -107,7 +128,7 @@ const Register = () => {
                                 onChange={textHandler}
                             />
                             <Form.Input
-                            required
+                                required
                                 fluid
                                 icon='lock'
                                 iconPosition='left'
@@ -118,21 +139,33 @@ const Register = () => {
                             />
 
                             <Button
-                             style={{'backgroundColor':'#601813' ,"color" : "white"}} 
-                             fluid 
-                             size='large'
-                              onClick={getRegister}
-                              >
+                                style={{ 'backgroundColor': '#601813', "color": "white" }}
+                                fluid
+                                size='large'
+                                onClick={getRegister}
+                            >
                                 Login
                             </Button>
                         </Segment>
                     </Form>
-                    <Message style={{backgroundColor:'transparent'}}>
-                    Already have an account? <a style={{'color':'black'}} href='/'>LogIn</a>
+                    <Message style={{ backgroundColor: 'transparent' }}>
+                        Already have an account? <a style={{ 'color': 'black' }} href='/'>LogIn</a>
                     </Message>
                 </Grid.Column>
             </Grid>
-
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme='dark'
+                type='warning'
+            />
         </div>
     )
 }
@@ -142,6 +175,6 @@ export default Register
 // ,{
 //     headers :
 //     {
-//         "Authorization" : localStorage.getItem('token') 
+//         "Authorization" : localStorage.getItem('token')
 //     }
 // }

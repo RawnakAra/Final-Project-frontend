@@ -33,6 +33,11 @@ await axios.get(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,
           active={activeItem === 'home'}
           onClick={() => navigate('/homepage')}
         />
+        <Menu.Item
+          name='veiwAllRecipes'
+          active={activeItem === 'viewallrecipes'}
+          onClick={() => navigate('/viewAllRecipes')}
+        />
         <Menu.Menu position='right'>
           <Menu.Item
             name='logout'

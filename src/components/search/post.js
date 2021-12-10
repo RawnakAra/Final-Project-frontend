@@ -32,10 +32,10 @@ const updateLikes = ()=>{
           <Image src={data.img} wrapped ui={false} />
           <Card.Content>
             <Card.Header>{data.recipeName}</Card.Header>
-            <Rating icon='star' defaultRating={3} maxRating={4} />
+            <Rating icon='heart' defaultRating={1} maxRating={3} />
           </Card.Content>
           <Card.Content extra>
-          <Link to={`/Page/${data._id}`}><Icon name='linkify' /></Link>
+          <Link to={`/Page/${data.recipeName}`}><Icon name='linkify' /></Link>
             <Button
               content='Like'
               icon='heart'

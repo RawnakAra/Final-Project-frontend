@@ -15,6 +15,7 @@ import Admin from './components/admin/admin';
 import AdminHomePage from './components/admin/adminHomePage';
 import Page from './components/search/page';
 import AddRecipe from './components/addRecipe/toAdd';
+import ViewAllRecipes from './components/search/viewallrecipes';
 
 function App() {
   const [data, setData] = React.useState('')
@@ -58,6 +59,7 @@ function App() {
             <Route path='/adminHomePage' element={<AdminHomePage data={data} updatedata={updatedata} />} />
             <Route path='/Page/:id' element={<Page/>} />
             <Route path='/addNew' element={<AddRecipe/>} />
+            <Route path='/viewAllRecipes' element={<ViewAllRecipes/>} />
           </Routes>
         </div>
       </Router>
