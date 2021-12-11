@@ -11,12 +11,12 @@ const logout=async (e)=>{
 const userLogOut = (e.target.getAttribute('value'))
 await axios.get(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,{
   headers: {
-    "Authorization": localStorage.getItem("token")
+    "Authorization": sessionStorage.getItem("token")
   }
 })
   .then(res => {
     if (res.status === 200) {
-        window.localStorage.clear()
+        window.sessionStorage.clear()
       navigate('/')
     }
   }).catch(err => {

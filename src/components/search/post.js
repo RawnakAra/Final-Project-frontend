@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Icon, Image, Button, Rating } from 'semantic-ui-react'
+import {CardGroup, Card, Icon, Image, Button, Rating } from 'semantic-ui-react'
 import {
   Link
  } from "react-router-dom";
@@ -28,14 +28,15 @@ const updateLikes = ()=>{
   return (
     <>
       {
-        <Card>
+        //  <CardGroup itemsPerRow={3} stackable style={{backgroundColor :'green'}}> 
+        <Card stackable>
           <Image src={data.img} wrapped ui={false} />
           <Card.Content>
             <Card.Header>{data.recipeName}</Card.Header>
             <Rating icon='heart' defaultRating={1} maxRating={3} />
           </Card.Content>
-          <Card.Content extra>
-          <Link to={`/Page/${data.recipeName}`}><Icon name='linkify' /></Link>
+          <Card.Content extra style={{display: 'flex' ,  justifyContent: "space-around" , alignItems: 'top'}}>
+          <Link to={`/Page/${data.recipeName}`} style={{marginTop : '1vh'}}><Icon name='linkify' /></Link>
             <Button
               content='Like'
               icon='heart'
@@ -46,6 +47,7 @@ const updateLikes = ()=>{
             />
           </Card.Content>
         </Card>
+        //  </CardGroup>
       }
     </>
   )

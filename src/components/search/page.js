@@ -52,17 +52,17 @@ const Page = () => {
             <Item.Group >
               <Item>
                 <Item.Content>
-                  <Item.Header as='h1'>{ingredientsData[0].recipeName}</Item.Header>
-                  <Item.Description>
-                    <Image src={ingredientsData[0].img} size="small" />
+                 <Item.Description>
+                  <Item.Header as='h1'>{ingredientsData[0].recipeName}</Item.Header>  
                   </Item.Description>
                   <Message>
-                  INGREDIENTS
+                  <Image src={ingredientsData[0].img} size="small" />
+                  <b>INGREDIENTS</b>
                     <MessageList>{replaceCommaLine((ingredientsData[0].ingredients))}</MessageList>
                   </Message>
                   
                   <Message>
-                  INSTRUCTIONS
+                 <b>INSTRUCTIONS</b>
                     <MessageList>{replaceCommaLine(ingredientsData[0].instructions)}</MessageList>
                   </Message>
                 </Item.Content>

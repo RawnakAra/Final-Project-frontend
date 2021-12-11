@@ -16,12 +16,12 @@ const HomePage = () => {
                         <Search />
                     </>
                     :
-                    <>
-                        <Form loading style={{ height: '90vh', width: '100vh', fontSize: '4vw', fontWeight: "500"  }}>
+                    <div>
+                        <Form loading style={{ height: '90vh', width: '100vh', fontSize: '2vw', fontWeight: "500" ,display: 'flex' ,backgroundColor: 'chocolate'}}>
                             You Need To Authenticate
                         </Form>
                         <FormField style={{ fontSize: '2vw', fontWeight: '500' }}>To Authenticate<Button onClick={() => navigate('/')}>Click Here</Button></FormField>
-                    </>
+                    </div>
             }
 
         </>

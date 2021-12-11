@@ -11,12 +11,13 @@ const logout=async (e)=>{
 const userLogOut = (e.target.getAttribute('value'))
 await axios.get(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,{
   headers: {
-    "Authorization": localStorage.getItem("token")
+    "Authorization": sessionStorage.getItem("token")
   }
 })
   .then(res => {
     if (res.status === 200) {
-      localStorage.clear()
+      console.log(userLogOut)
+      window.sessionStorage.clear()
       navigate('/')
 
     }
@@ -33,11 +34,6 @@ await axios.get(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,
           name='home'
           active={activeItem === 'home'}
           onClick={() => navigate('/adminHomePage')}
-        />
-        <Menu.Item
-          name='Add Store'
-          active={activeItem === 'Add Store'}
-          onClick={() => navigate('/')}
         />
         <Menu.Item
           name='Add Recipe'

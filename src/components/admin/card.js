@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Card, Icon} from 'semantic-ui-react'
-import './card.style.css'
+ import { Card, CardGroup, Icon} from 'semantic-ui-react'
 
 const CardP = ({ data, user, updatedata }) => {
 
@@ -23,6 +22,7 @@ const CardP = ({ data, user, updatedata }) => {
   }
 
   return (
+   
     <Card>
       {
         console.log(user)
@@ -34,7 +34,7 @@ const CardP = ({ data, user, updatedata }) => {
         </Card.Meta>
       </Card.Content>
       <Card.Content extra>
-        <button value={user._id} onClick={() => deleteHandler(user._id)}>
+        <button value={user._id} style={{backgroundColor :'#992921'}} onClick={() => deleteHandler(user._id)}>
           <Icon name='user delete' />
           Delete
         </button>

@@ -29,7 +29,7 @@ const Admin = ({ data }) => {
             axios.post('https://sweets-in-progress.herokuapp.com/api/user/user/login', item)
                 .then(res => {
                     //console.log(res)
-                    localStorage.setItem("token", res.data.token)
+                    sessionStorage.setItem("token", res.data.token)
                     setItem('')
                     setTimeout(() => {
                         navigate('/adminHomePage')

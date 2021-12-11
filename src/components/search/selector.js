@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios'
-import { Button, Icon } from 'semantic-ui-react'
+import { Button, Icon, CardGroup } from 'semantic-ui-react'
 import Select from 'react-select'
 import Postes from './post'
+import '../homepage.style.css'
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -17,14 +18,14 @@ const options = [
   { value: 'flour', label: 'Flour' }
 ]
 const Selector = () => {
-  const [resipeData , sitResipeData] = React.useState([])
+  const [resipeData, sitResipeData] = React.useState([])
   const [toSend, setToSend] = React.useState({
     recipeIngredients: ''
   })
 
 
   const handleChange = (value, name) => {
-   // console.log(value.map(ele => ele.value))
+    // console.log(value.map(ele => ele.value))
     //console.log(name.name)
     //console.log(toSend)
     setToSend({
@@ -34,7 +35,7 @@ const Selector = () => {
   }
 
   const handelClick = () => {
-    axios.post('https://sweets-in-progress.herokuapp.com/api/recipes/searchbyingredients',toSend)
+    axios.post('https://sweets-in-progress.herokuapp.com/api/recipes/searchbyingredients', toSend)
       .then(res => {
         console.log(res)
         if (res.status === 200) {
@@ -50,26 +51,31 @@ const Selector = () => {
 
   return (
     <>
-      <Select
-        isMulti
-        name="recipeIngredients"
-        options={options}
-        key={options}
-        className="basic-multi-select"
-        classNamePrefix="select"
-        onChange={(value, name) => handleChange(value, name)}
-      />
-      <Button animated onClick={handelClick}>
-        <Button.Content visible>Search</Button.Content>
-        <Button.Content hidden>
-          <Icon name='arrow right' />
-        </Button.Content>
-      </Button>
-      {
-        resipeData ? resipeData.map((resipe ,index)  => {
-         return <Postes key={index} data={resipe}/>
-        }):<></>
-      }
+      <div className="selector">
+        <Button animated onClick={handelClick} style={{ backgroundColor: "#601813" }}>
+          <Button.Content visible>Search</Button.Content>
+          <Button.Content hidden>
+            <Icon name='arrow right' />
+          </Button.Content>
+        </Button>
+        <Select
+          isMulti
+          name="recipeIngredients"
+          options={options}
+          key={options}
+          className="basic-multi-select ss"
+          classNamePrefix="select"
+          onChange={(value, name) => handleChange(value, name)}
+        />
+      </div>
+      <div className='post'>
+        {
+          resipeData ?
+            resipeData.map((resipe, index) => {
+              return <Postes key={index} data={resipe} />
+            }) : <></>
+        }
+      </div>
     </>
   )
 }
