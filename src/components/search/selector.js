@@ -15,7 +15,11 @@ const options = [
   { value: 'lemon', label: 'Lemon' },
   { value: 'milke', label: 'Milke' },
   { value: 'buttern', label: 'Buttern' },
-  { value: 'flour', label: 'Flour' }
+  { value: 'flour', label: 'Flour' },
+  { value: 'baking powder', label: 'Baking powder' },
+  { value: 'baking soda', label: 'Baking soda' },
+  { value: 'apples', label: 'Apples' },
+  { value: 'cracker', label: 'Cracker' },
 ]
 const Selector = () => {
   const [resipeData, setResipeData] = React.useState([])
@@ -81,9 +85,14 @@ const Selector = () => {
       <div className='post'>
         {
           resipeData ?
+          <CardGroup itemsPerRow={2} stackable >
+            {
             resipeData.map(resipe => {
               return <Postes key={resipe._id} data={resipe} />
-            }) : <></>
+            }) 
+        }
+            </CardGroup>
+            : <></>
         }
       </div>
     </>
