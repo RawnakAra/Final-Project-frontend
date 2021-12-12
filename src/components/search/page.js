@@ -57,6 +57,7 @@ const Page = () => {
                   </Item.Description>
                   <Message>
                   <Image src={ingredientsData[0].img} size="small" />
+                  <br/>
                   <b>INGREDIENTS</b>
                     <MessageList>{replaceCommaLine((ingredientsData[0].ingredients))}</MessageList>
                   </Message>

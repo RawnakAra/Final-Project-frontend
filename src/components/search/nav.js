@@ -16,7 +16,7 @@ await axios.get(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,
 })
   .then(res => {
     if (res.status === 200) {
-        window.sessionStorage.clear()
+        sessionStorage.clear()
       navigate('/')
     }
   }).catch(err => {
@@ -34,9 +34,14 @@ await axios.get(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,
           onClick={() => navigate('/homepage')}
         />
         <Menu.Item
-          name='veiwAllRecipes'
+          name='All Recipes'
           active={activeItem === 'viewallrecipes'}
           onClick={() => navigate('/viewAllRecipes')}
+        />
+        <Menu.Item
+          name='easy desserts'
+          active={activeItem === 'easydesserts'}
+          onClick={() => navigate('/easydesserts')}
         />
         <Menu.Menu position='right'>
           <Menu.Item
@@ -45,6 +50,7 @@ await axios.get(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,
             active={activeItem === 'logout'}
             onClick={logout}
           />
+         
         </Menu.Menu>
       </Menu>
     </div>

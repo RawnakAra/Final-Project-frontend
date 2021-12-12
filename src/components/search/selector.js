@@ -18,7 +18,7 @@ const options = [
   { value: 'flour', label: 'Flour' }
 ]
 const Selector = () => {
-  const [resipeData, sitResipeData] = React.useState([])
+  const [resipeData, setResipeData] = React.useState([])
   const [toSend, setToSend] = React.useState({
     recipeIngredients: ''
   })
@@ -37,20 +37,30 @@ const Selector = () => {
   const handelClick = () => {
     axios.post('https://sweets-in-progress.herokuapp.com/api/recipes/searchbyingredients', toSend)
       .then(res => {
-        console.log(res)
+        console.log('res',res)
         if (res.status === 200) {
-          sitResipeData(res.data)
-          setToSend('')
+          setResipeData(res.data)
         }
       }).catch(err => {
-        console.log(err)
+        console.log('res',err)
       })
+      // axios.post('https://sweets-in-progress.herokuapp.com/api/easydesserts/searchbyingredients',toSend)
+      // .then(res=>{
+      //   console.log("easy",res)
+      //   if (res.status === 200) {
+      //     setResipeData(res.data)
+      //     setToSend('')
+      //   }
+      // }).catch(err =>{
+      //   console.log("easy",err)
+      // })
   }
 
 
 
   return (
     <>
+    {console.log(resipeData)}
       <div className="selector">
         <Button animated onClick={handelClick} style={{ backgroundColor: "#601813" }}>
           <Button.Content visible>Search</Button.Content>
@@ -71,8 +81,8 @@ const Selector = () => {
       <div className='post'>
         {
           resipeData ?
-            resipeData.map((resipe, index) => {
-              return <Postes key={index} data={resipe} />
+            resipeData.map(resipe => {
+              return <Postes key={resipe._id} data={resipe} />
             }) : <></>
         }
       </div>

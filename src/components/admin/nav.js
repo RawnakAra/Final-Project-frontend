@@ -17,7 +17,7 @@ await axios.get(`https://sweets-in-progress.herokuapp.com/api/user/user/logout`,
   .then(res => {
     if (res.status === 200) {
       console.log(userLogOut)
-      window.sessionStorage.clear()
+      sessionStorage.clear()
       navigate('/')
 
     }

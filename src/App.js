@@ -16,6 +16,7 @@ import AdminHomePage from './components/admin/adminHomePage';
 import Page from './components/search/page';
 import AddRecipe from './components/addRecipe/toAdd';
 import ViewAllRecipes from './components/search/viewallrecipes';
+import EasyDesserts from './components/easy-desserts/easydesserts';
 
 function App() {
   const [data, setData] = React.useState('')
@@ -60,6 +61,8 @@ function App() {
             <Route path='/Page/:id' element={<Page/>} />
             <Route path='/addNew' element={<AddRecipe/>} />
             <Route path='/viewAllRecipes' element={<ViewAllRecipes/>} />
+            <Route path='/easydesserts' element={<EasyDesserts/>} />
+
           </Routes>
         </div>
       </Router>
